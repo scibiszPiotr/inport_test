@@ -1,0 +1,15 @@
+<?php
+
+namespace Pscibisz\Inpost\Services\Logger;
+
+class LoggerToFile implements LoggerInterface
+{
+    private string $path = __DIR__ . '/../../../logs/logs.txt';
+    public function info($message): void
+    {
+        /** the simplest solution for logging to a file,
+         * the interface allows in the future to connect the logging in a different way, e.g. to db or stdout
+         */
+        file_put_contents($this->path, PHP_EOL . $message, FILE_APPEND);
+    }
+}

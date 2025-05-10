@@ -1,0 +1,29 @@
+Zadanie rekrutacyjne – PHP Developer (API InPost)
+
+Twoim zadaniem jest stworzenie prostego skryptu PHP, który przy pomocy dokumentacji API InPost (https://dokumentacja-inpost.atlassian.net) wykona następujące kroki:
+
+Cel:
+Utworzyć przesyłkę kurierską typu "Kurier standard" oraz zamówić kuriera, czyli złożyć tzw. shipment.
+
+Wymagania techniczne:
+1. Język: PHP 7.4+ lub 8.x
+2. HTTP klient: PHP-Guzzle
+3. Autoryzacja: Wykorzystaj metodę autoryzacji opisaną w dokumentacji InPost (np. Bearer token)
+4. Dane przesyłki: możesz użyć przykładowych danych (nadawca, odbiorca, waga, rozmiar itp.)
+5. Typ przesyłki: "courier standard"
+6. Logowanie: Wyświetl odpowiedzi z API lub zapisz je do pliku log.txt
+
+Co dostarczasz:
+1. Plik create_shipment.php lub projekt w katalogu np. inpost_test/
+2. Kod powinien być czytelny, zorganizowany, zawierać komentarze
+3. Krótkie README.md, opisujące jak uruchomić skrypt i gdzie podać token API
+
+Informacje dodatkowe:
+1. Nie korzystaj z frameworków
+2. Skrypt powinien być gotowy do uruchomienia lokalnie przez php create_shipment.php
+
+Kryteria oceny:
+1. Poprawność wywołań API (czy trafnie użyto endpointów InPost)
+2. Czytelność i struktura kodu
+3. Obsługa odpowiedzi i ewentualnych błędów
+4. Komentarze i prostota uruchomienia

@@ -1,0 +1,7 @@
+
+The type of the "amount" attribute for class "Pscibisz\Inpost\DTOs\InsuranceDto" must be one of "float" ("int" given).
+The type of the "amount" attribute for class "Pscibisz\Inpost\DTOs\InsuranceDto" must be one of "float" ("int" given).
+The type of the "amount" attribute for class "Pscibisz\Inpost\DTOs\InsuranceDto" must be one of "float" ("int" given).
+{"status":400,"error":"missing_trucker_id","message":"trucker_ID_is_not_set_for_organization","details":null}
+{"status":400,"error":"missing_trucker_id","message":"trucker_ID_is_not_set_for_organization","details":null}
+{"status":400,"error":"missing_trucker_id","message":"trucker_ID_is_not_set_for_organization","details":null}
