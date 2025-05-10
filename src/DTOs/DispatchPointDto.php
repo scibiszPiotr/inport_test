@@ -4,6 +4,9 @@ namespace Pscibisz\Inpost\DTOs;
 
 final readonly class DispatchPointDto implements \JsonSerializable
 {
+    /**
+     * @param array<string> $shipments
+     */
     public function __construct(
         public array $shipments,
         public string $comment,

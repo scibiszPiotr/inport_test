@@ -1,6 +1,6 @@
 <?php
 
-namespace Pscibisz\Inpost;
+namespace Pscibisz\Inpost\Services\HttpClients;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -8,18 +8,18 @@ use Pscibisz\Inpost\Exceptions\HttpClientException;
 
 readonly class HttpClient implements HttpClientInterface
 {
-    public function __construct(private int $organizationId, private string $apiToken)
-    {
+    public function __construct(
+        private Client $client,
+        private int $organizationId,
+        private string $apiToken
+    ) {
     }
 
     public function post(string $url, string $uri, \JsonSerializable $requestBody): string
     {
-        $client = new Client([
-            'base_uri' => $url,
-        ]);
-
         try {
-            $response = $client->request('POST', $this->formatUri($uri), [
+            $response = $this->client->request('POST', $this->formatUri($uri), [
+                'base_uri' => $url,
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->apiToken,
                     'Accept' => 'application/json',

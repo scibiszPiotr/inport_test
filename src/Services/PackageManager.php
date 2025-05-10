@@ -2,28 +2,15 @@
 
 namespace Pscibisz\Inpost\Services;
 
-use Pscibisz\Inpost\HttpClient;
-use Pscibisz\Inpost\Services\Logger\LoggerInterface;
-use Pscibisz\Inpost\Services\Logger\LoggerToFile;
+use Pscibisz\Inpost\Services\ReadData\ReadDataInterface;
 
 class PackageManager
 {
-    private HttpClient $httpClient;
-    private ReadData $readData;
-    private LoggerInterface $logger;
-
-    /** This constructor is meant to be a DI workaround, meaning I'll be creating and configuring the rest of the app here */
     public function __construct(
-        private readonly string $apiToken,
-        private readonly string $organizationId,
+        private ReadDataInterface $readData,
+        private ShipmentService $shipmentService,
+        private DispatchService $dispatchService,
     ) {
-        $this->httpClient = new HttpClient(
-            $this->organizationId,
-            $this->apiToken,
-        );
-
-        $this->readData = new ReadData('shipment.json');
-        $this->logger = new LoggerToFile();
     }
 
     public function handleTask(): void
@@ -31,10 +18,8 @@ class PackageManager
         /** get data from file */
         $dataJson = $this->readData->get();
 
-        $shipmentService = new ShipmentService($this->httpClient, $this->logger);
-        $shipmentId = $shipmentService->orderShipment($dataJson);
+        $shipmentId = $this->shipmentService->orderShipment($dataJson);
 
-        $dispatchService = new DispatchService($this->logger, $this->httpClient);
-        $dispatchService->dispatch($dataJson, $shipmentId);
+        $this->dispatchService->dispatch($dataJson, $shipmentId);
     }
 }

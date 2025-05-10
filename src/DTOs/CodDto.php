@@ -4,10 +4,12 @@ namespace Pscibisz\Inpost\DTOs;
 
 final readonly class CodDto implements \JsonSerializable
 {
+    public float $amount;
     public function __construct(
-        public float $amount,
+        int|float $amount,
         public string $currency
     ) {
+        $this->amount = $amount;
     }
 
     public function jsonSerialize(): array

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pscibisz\Inpost;
+namespace Pscibisz\Inpost\Services\HttpClients;
 
 interface HttpClientInterface
 {

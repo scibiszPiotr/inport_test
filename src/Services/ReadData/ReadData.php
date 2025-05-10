@@ -1,6 +1,6 @@
 <?php
 
-namespace Pscibisz\Inpost\Services;
+namespace Pscibisz\Inpost\Services\ReadData;
 
 use Pscibisz\Inpost\Exceptions\ValidateJsonException;
 
@@ -14,7 +14,7 @@ readonly class ReadData implements ReadDataInterface
     {
         try {
             return json_decode(
-                file_get_contents(__DIR__ . '/../../data/' . $this->path),
+                file_get_contents(__DIR__ . '/../../../data/' . $this->path),
                 true,
                 512,
                 JSON_THROW_ON_ERROR

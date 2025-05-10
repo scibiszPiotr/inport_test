@@ -4,7 +4,7 @@ namespace Pscibisz\Inpost\Services\Logger;
 
 class LoggerToFile implements LoggerInterface
 {
-    private string $path = __DIR__ . '/../../../logs/logs.txt';
+    private string $path = __DIR__ . '/../../../logs/log.txt';
     public function info(string $message): void
     {
         /** the simplest solution for logging to a file,

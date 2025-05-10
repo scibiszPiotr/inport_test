@@ -1,6 +1,6 @@
 <?php
 
-namespace Pscibisz\Inpost\Services;
+namespace Pscibisz\Inpost\Services\ReadData;
 
 interface ReadDataInterface
 {

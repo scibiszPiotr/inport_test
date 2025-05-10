@@ -3,7 +3,8 @@
 namespace Pscibisz\Inpost\Services;
 
 use Pscibisz\Inpost\Factory\ShipmentOrderFactory;
-use Pscibisz\Inpost\HttpClientInterface;
+use Pscibisz\Inpost\Services\Enums\ApiEndpoint;
+use Pscibisz\Inpost\Services\HttpClients\HttpClientInterface;
 use Pscibisz\Inpost\Services\Logger\LoggerInterface;
 
 class ShipmentService
@@ -31,7 +32,7 @@ class ShipmentService
         /** Logging for the entire response task content from API */
         $this->logger->info('Response from API after create Shipment: '. $shipmentResponse);
 
-        $shipment = json_decode($shipmentResponse);
+        $shipment = json_decode($shipmentResponse, true);
 
         return $shipment['id'];
     }

@@ -9,7 +9,7 @@ class ShipmentOrderDto implements JsonSerializable
     public function __construct(
         public SenderDto $sender,
         public ReceiverDto $receiver,
-        public array $parcels,
+        public ParcelCollection $parcels,
         public ?InsuranceDto $insurance,
         public ?CodDto $cod,
         public string $service,
@@ -24,10 +24,7 @@ class ShipmentOrderDto implements JsonSerializable
         return [
             'sender' => $this->sender->jsonSerialize(),
             'receiver' => $this->receiver->jsonSerialize(),
-            'parcels' => array_map(
-                fn ($parcel) => $parcel->jsonSerialize(),
-                $this->parcels
-            ),
+            'parcels' => $this->parcels->jsonSerialize(),
             'service' => $this->service,
             'additional_services' => $this->additionalServices,
             'reference' => $this->reference,

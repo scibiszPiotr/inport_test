@@ -4,6 +4,7 @@ namespace Pscibisz\Inpost\Factory;
 
 use Pscibisz\Inpost\DTOs\CodDto;
 use Pscibisz\Inpost\DTOs\InsuranceDto;
+use Pscibisz\Inpost\DTOs\ParcelCollection;
 use Pscibisz\Inpost\DTOs\ParcelDto;
 use Pscibisz\Inpost\DTOs\ReceiverDto;
 use Pscibisz\Inpost\DTOs\SenderDto;
@@ -29,9 +30,9 @@ class ShipmentOrderFactory
             $sender = $this->serializer->denormalize($data['sender'], SenderDto::class);
             $receiver = $this->serializer->denormalize($data['receiver'], ReceiverDto::class);
             $parcelsData = $data['parcels'] ?? [];
-            $parcels = [];
+            $parcels = new ParcelCollection();
             foreach ($parcelsData as $parcelData) {
-                $parcels[] = $this->serializer->denormalize($parcelData, ParcelDto::class);
+                $parcels->add($this->serializer->denormalize($parcelData, ParcelDto::class));
             }
             $insurance = isset($data['insurance']) ? $this->serializer->denormalize($data['insurance'], InsuranceDto::class) : null;
             $cod = isset($data['cod']) ? $this->serializer->denormalize($data['cod'], CodDto::class) : null;

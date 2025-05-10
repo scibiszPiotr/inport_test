@@ -12,8 +12,9 @@
 ## Run UnitTest
 `./vendor/bin/phpunit`
 
+## Logs
+* The log file is located in `logs/log.txt` and contains information about errors and responses from the API
 
 ## Assumptions
 * For simplicity, I assumed the input was json copied from the sample data in the documentation.
-* The log file is located in logs/logs.txt and contains information about errors and responses from the API
-* At the moment I have a problem with the sandbox account, I am not able to add a tracker id to generate a token allowing me to order a courier, as proof I am attaching a screenshot from the application. I am also waiting for a response from inpost support. Therefore I am not able to test whether this code will work and remove any errors.
+* At the moment I have a problem with the sandbox account, I am not able to add a tracker id to generate a token allowing me to order a courier, as proof I am attaching a screenshot from the application. I am also waiting for a response from inpost support. Therefore I am not able to test whether this code will work and remove any errors. I generated a token for the parcel locker without any problems.

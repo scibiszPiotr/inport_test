@@ -3,10 +3,11 @@
 namespace Pscibisz\Inpost\Services;
 
 use Pscibisz\Inpost\Factory\DispatchPointFactory;
-use Pscibisz\Inpost\HttpClientInterface;
+use Pscibisz\Inpost\Services\Enums\ApiEndpoint;
+use Pscibisz\Inpost\Services\HttpClients\HttpClientInterface;
 use Pscibisz\Inpost\Services\Logger\LoggerInterface;
 
-readonly class DispatchService
+class DispatchService
 {
     public function __construct(
         private LoggerInterface $logger,

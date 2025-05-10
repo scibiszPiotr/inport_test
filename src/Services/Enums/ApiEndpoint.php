@@ -1,6 +1,6 @@
 <?php
 
-namespace Pscibisz\Inpost\Services;
+namespace Pscibisz\Inpost\Services\Enums;
 
 /** I used the enum class to not pass these values from .env,
  * in symfony I would choose to configure the client via config->yaml files
