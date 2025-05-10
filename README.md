@@ -13,7 +13,7 @@
 `./vendor/bin/phpunit`
 
 ## Logs
-* The log file is located in `logs/log.txt` and contains information about errors and responses from the API
+* The log file is located in `log.txt` and contains information about errors and responses from the API
 
 ## Assumptions
 * For simplicity, I assumed the input was json copied from the sample data in the documentation.
