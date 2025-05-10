@@ -1,0 +1,2 @@
+
+{"status":400,"error":"missing_trucker_id","message":"trucker_ID_is_not_set_for_organization","details":null}
