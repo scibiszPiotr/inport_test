@@ -1,7 +1,5 @@
 <?php
 
-/** Use autoload in application */
-
 use GuzzleHttp\Client;
 use Pscibisz\Inpost\Services\DispatchService;
 use Pscibisz\Inpost\Services\HttpClients\HttpClient;
