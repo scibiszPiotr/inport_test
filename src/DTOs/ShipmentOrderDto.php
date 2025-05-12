@@ -4,7 +4,7 @@ namespace Pscibisz\Inpost\DTOs;
 
 use JsonSerializable;
 
-class ShipmentOrderDto implements JsonSerializable
+final readonly class ShipmentOrderDto implements JsonSerializable
 {
     public function __construct(
         public SenderDto $sender,

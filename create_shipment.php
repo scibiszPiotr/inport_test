@@ -1,6 +1,8 @@
 <?php
 
 use GuzzleHttp\Client;
+use Pscibisz\Inpost\Factory\OrderFactory;
+use Pscibisz\Inpost\Factory\ShipmentResponseFactory;
 use Pscibisz\Inpost\Services\DispatchService;
 use Pscibisz\Inpost\Services\HttpClients\HttpClient;
 use Pscibisz\Inpost\Services\Logger\LoggerToFile;
@@ -29,10 +31,12 @@ try {
         new ShipmentService(
             $httpClient,
             $logger,
+            new ShipmentResponseFactory($logger),
         ),
         new DispatchService(
             $logger,
             $httpClient,
+            new OrderFactory($logger),
         ),
     )
         ->handleTask();

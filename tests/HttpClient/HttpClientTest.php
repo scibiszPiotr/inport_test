@@ -5,6 +5,7 @@ namespace Tests\HttpClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Pscibisz\Inpost\Exceptions\HttpClientException;
 use Pscibisz\Inpost\Services\HttpClients\HttpClient;
@@ -26,7 +27,7 @@ class HttpClientTest extends TestCase
         $stream->method('getContents')->willReturn($expectedContent);
 
         $response = $this->createMock(ResponseInterface::class);
-        $response->method('getStatusCode')->willReturn(200);
+        $response->method('getStatusCode')->willReturn(201);
         $response->method('getBody')->willReturn($stream);
 
         $client = $this->createMock(Client::class);
@@ -55,7 +56,7 @@ class HttpClientTest extends TestCase
         $httpClient->post(self::BASE_URL, self::URI_TEMPLATE, new DummyJson());
     }
 
-    public function testPostThrowsHttpClientExceptionOnNon200Status(): void
+    public function testPostThrowsHttpClientExceptionOnNon201Status(): void
     {
         $stream = $this->createMock(StreamInterface::class);
         $stream->method('getContents')->willReturn('Error occurred');
@@ -73,5 +74,51 @@ class HttpClientTest extends TestCase
         $this->expectExceptionMessage('Error occurred');
 
         $httpClient->post(self::BASE_URL, self::URI_TEMPLATE, new DummyJson());
+    }
+
+    public function testGetReturnsResponseContent()
+    {
+        $expectedBody = '{"status":"ok"}';
+        $response = new Response(200, [], $expectedBody);
+
+        $guzzleMock = $this->createMock(Client::class);
+        $guzzleMock->method('request')
+            ->with('GET', 'v1/test/uri', $this->anything())
+            ->willReturn($response);
+
+        $client = new HttpClient($guzzleMock, 123, 'fake_token');
+
+        $result = $client->get('https://example.com', 'v1/test/uri');
+
+        $this->assertSame($expectedBody, $result);
+    }
+
+    public function testGetThrowsHttpClientExceptionOnNon200Response()
+    {
+        $this->expectException(HttpClientException::class);
+
+        $response = new Response(500, [], 'Internal Server Error');
+
+        $guzzleMock = $this->createMock(Client::class);
+        $guzzleMock->method('request')
+            ->willReturn($response);
+
+        $client = new HttpClient($guzzleMock, 123, 'fake_token');
+        $client->get('https://example.com', 'v1/test/uri');
+    }
+
+    public function testGetHandlesGuzzleException()
+    {
+        $this->expectException(HttpClientException::class);
+
+        $guzzleMock = $this->createMock(Client::class);
+        $guzzleMock->method('request')
+            ->willThrowException(new RequestException(
+                'Request failed',
+                new Request('GET', 'v1/test/uri')
+            ));
+
+        $client = new HttpClient($guzzleMock, 123, 'fake_token');
+        $client->get('https://example.com', 'v1/test/uri');
     }
 }

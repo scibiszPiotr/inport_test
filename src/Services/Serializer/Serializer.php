@@ -1,6 +1,6 @@
 <?php
 
-namespace Pscibisz\Inpost\Services\Seriallizer;
+namespace Pscibisz\Inpost\Services\Serializer;
 
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
@@ -9,6 +9,7 @@ use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
+use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer as SymfonySerializer;
 
@@ -24,6 +25,8 @@ class Serializer
         $reflectionExtractor = new ReflectionExtractor();
 
         $normalizers = [
+            new ParcelCollectionDenormalizer(),
+            new BackedEnumNormalizer(),
             new ArrayDenormalizer(),
             new ObjectNormalizer(
                 null,

@@ -8,6 +8,7 @@ namespace Pscibisz\Inpost\Services\Enums;
 enum ApiEndpoint: string
 {
     case API_URL = 'https://sandbox-api-shipx-pl.easypack24.net/';
-    case ORDER_SHIPMENTS = 'v1/organizations/%d/shipments';
+    case SHIPMENTS_CREATE = 'v1/organizations/%d/shipments';
+    case SHIPMENTS_DETAILS = 'v1/shipments/';
     case DISPATCH_ORDERS = 'v1/organizations/%d/dispatch_orders';
 }

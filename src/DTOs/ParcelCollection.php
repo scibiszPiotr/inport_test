@@ -1,4 +1,5 @@
 <?php
+
 namespace Pscibisz\Inpost\DTOs;
 
 use ArrayIterator;

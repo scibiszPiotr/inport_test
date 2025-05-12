@@ -4,7 +4,7 @@ namespace Pscibisz\Inpost\Services\ReadData;
 
 use Pscibisz\Inpost\Exceptions\ValidateJsonException;
 
-readonly class ReadData implements ReadDataInterface
+final readonly class ReadData implements ReadDataInterface
 {
     public function __construct(public string $path)
     {

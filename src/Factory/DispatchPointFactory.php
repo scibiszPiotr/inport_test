@@ -5,11 +5,11 @@ namespace Pscibisz\Inpost\Factory;
 use Pscibisz\Inpost\DTOs\DispatchPointDto;
 use Pscibisz\Inpost\DTOs\SenderDto;
 use Pscibisz\Inpost\Services\Logger\LoggerInterface;
-use Pscibisz\Inpost\Services\Seriallizer\Serializer as CustomSerializer;
+use Pscibisz\Inpost\Services\Serializer\Serializer as CustomSerializer;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Serializer;
 
-class DispatchPointFactory
+final class DispatchPointFactory
 {
     private Serializer $serializer;
 

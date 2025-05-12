@@ -2,7 +2,7 @@
 
 namespace Pscibisz\Inpost\Services\Logger;
 
-class LoggerToFile implements LoggerInterface
+final class LoggerToFile implements LoggerInterface
 {
     private string $path = __DIR__ . '/../../../log.txt';
     public function info(string $message): void
