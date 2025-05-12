@@ -25,7 +25,6 @@ try {
         getenv('ORGANIZATION_ID'),
         getenv('INPOST_TOKEN'),
     );
-    $logger = new LoggerToFile();
     new PackageManager(
         new ReadData('shipment.json'), //simplifying the provision of data for creating a package
         new ShipmentService(
